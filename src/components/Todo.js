@@ -7,16 +7,24 @@ import { BsSearch, BsPlus } from 'react-icons/bs';
 import { addTodo, updateSearchTerm } from '../redux/actions';
 
 const Todo = () => {
+
+    // using useState to get the search term and todos from the redux store.
+    //using useDispatch  to dispatch actions to the redux store.
+
   const todos = useSelector((state) => state.todos);
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
   const [newTodoText, setNewTodoText] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
+
+//   using handleAddTodo  function to add a new todo item in the list when clicking on the "+" button or pressing enter  /**
   const handleAddTodo = (text) => {
     dispatch(addTodo(text));
   };
+   
 
+  // using handleAddTodoClick  function as a callback for the onSubmit event of the form in AddTodo component. 
   const handleAddTodoClick = () => {
     if (newTodoText.trim() !== '') {
       handleAddTodo(newTodoText.trim());
@@ -24,6 +32,7 @@ const Todo = () => {
     }
   };
 
+//   using handleSearchChange  function for onChange event of input field in SearchBar component.
   const handleSearchChange = (value) => {
     setSearchTerm(value);
     dispatch(updateSearchTerm(value));
